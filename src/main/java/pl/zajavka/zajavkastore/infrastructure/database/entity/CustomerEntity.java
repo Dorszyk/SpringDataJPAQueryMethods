@@ -1,13 +1,7 @@
 package pl.zajavka.zajavkastore.infrastructure.database.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -30,10 +24,19 @@ import java.util.Set;
                 name = "CustomerEntity.findCustomerByEmail",
                 query = "FROM CustomerEntity WHERE email =?1"
         )
-
+})
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "CustomerEntity.findAllCustomersNamedNativeQueries",
+                query = "SELECT  * FROM  customer",
+                resultClass = CustomerEntity.class),
+        @NamedNativeQuery(
+                name = "CustomerEntity.findCustomerByEmailNameNativeQueries",
+                query = "SELECT * FROM  customer where email = ?1",
+                resultClass = CustomerEntity.class
+        )
 })
 public class CustomerEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "customer_id", unique = true, nullable = false)
