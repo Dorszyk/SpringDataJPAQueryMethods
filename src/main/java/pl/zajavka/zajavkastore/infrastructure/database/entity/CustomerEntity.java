@@ -1,13 +1,6 @@
 package pl.zajavka.zajavkastore.infrastructure.database.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -28,6 +21,17 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "customer")
+@NamedQueries({
+        @NamedQuery(
+                name = "CustomerEntity.findAllCustomers",
+                query = "FROM CustomerEntity"
+        ),
+        @NamedQuery(
+                name = "CustomerEntity.findCustomerByEmail",
+                query = "FROM CustomerEntity WHERE email =?1"
+        )
+
+})
 public class CustomerEntity {
 
     @Id
