@@ -15,6 +15,8 @@ public class ZajavkaStoreApplication {
         NamedNativeQueries namedNativeQueries = context.getBean(NamedNativeQueries.class);
         QueryByExampleService queryByExampleService = context.getBean(QueryByExampleService.class);
         EntityGraphService entityGraphService = context.getBean(EntityGraphService.class);
+        SortingService sortingService = context.getBean(SortingService.class);
+        PaginationService paginationService= context.getBean(PaginationService.class);
         someService.callCustomer();
         someService.callProduct();
         someService.callPurchase();
@@ -22,6 +24,8 @@ public class ZajavkaStoreApplication {
         namedNativeQueries.queryNativeService();
         queryByExampleService.queryByExample();
         entityGraphService.graphService();
+        sortingService.sortingService();
+        paginationService.call();
 
     }
 }
